@@ -2,7 +2,7 @@
 #define QUEUE_H
 
 #include <iostream>
-
+#include <vector>
 template <class T>
 class Queue{
 
@@ -15,7 +15,7 @@ class Queue{
 	public:
 		/// Default Constructor
 		Queue(int first = 0, int last = 0, int total = 0)
-			: m_front{first}, m_back{last}, m_total{total}
+		: m_front{first}, m_back{last}, m_total{total}
 		{ /* Empty */ }
 
 		/// Default Destructor
@@ -27,7 +27,7 @@ class Queue{
 		}
 
 		void insert(T value){
-			m_list.push_back();
+			m_list.assign(1, value);
 		}
 };
 

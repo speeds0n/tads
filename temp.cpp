@@ -1,10 +1,13 @@
 #include <iostream>
-#include <vector>
-
+ 
 int main(){
 
-	std::vector<int> list;
+	int a{100000};
+	int i{0};
+	while(i <= a){
+		std::cout << i << std::endl;
+		i = i + 500;
+	}
 
-	list.push_back();
 	return 0;
 }

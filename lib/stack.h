@@ -1,14 +1,15 @@
 #ifndef STACK_H
 #define STACK_H
-
+#define TAMANHO 100000
 #include <iostream>
-#include <vector>
+//#include <vector>
 
 template <class T>
 class Stack{
 
 	private:
-		std::vector<T> m_list; //!< Stack data List
+		T m_list[TAMANHO];
+		//std::vector<T> m_list; //!< Stack data List
 		int m_top; //!< Count to top of the Stack
 
 	public:
@@ -19,7 +20,7 @@ class Stack{
 		/// Default Destructor
 		~Stack(){
 
-			m_list.clear();
+			//m_list.clear();
 			m_top = -1;
 		}
 
@@ -32,8 +33,11 @@ class Stack{
 		 */
 		void push(T value){
 
-			m_list.push_back(value);
-			m_top++;
+			if( !full() ){
+				m_list[++m_top] = value;
+			}else{
+				std::cout << "Stack is full!" << std::endl;
+			}
 		}
 
 		/// Remove top element
@@ -41,13 +45,13 @@ class Stack{
 		 * This function remove the element on top of Stack, reducing its size by one.
 		 * The element removed is the latest element inserted into the Stack.
 		 */
+
 		void pop(){
 
-			if(empty()){
-				std::cout << "Stack Empty" << std::endl;
+			if( !empty() ){
+				m_list[m_top--];
 			}else{
-				m_list.pop_back();
-				m_top--;
+				std::cout << "Stack Empty" << std::endl;
 			}
 		}
 
@@ -59,7 +63,7 @@ class Stack{
 		 * \return A reference to the top element in the Stack.
 		 */
 		T top(){
-			return m_list.back();
+			return m_list[m_top];
 		}
 		/// Test whether Stack is empty
 		/*!
@@ -70,6 +74,16 @@ class Stack{
 		bool empty(){
 
 			return m_top == -1;
+		}
+
+		/// Test whether Stack is full
+		/*!
+		 * This function check if the Stack is full and return true or false.
+		 *
+		 * \return Logical expression, true if Stack is full and false otherwise. 
+		 */
+		bool full(){
+			return m_top+1 == TAMANHO;
 		}
 
 		/// Return size
